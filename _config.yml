@@ -1,10 +1,10 @@
 # Site settings
-title: Mushuzi Blog
-SEOTitle: Mushuzi的博客 | Mushuzi Blog
+title: mushuzi Blog
+SEOTitle: mushuzi的博客 | mushuzi Blog
 header-img: img/post-bg-desk.jpg
-email: mushuzi@gmail.com
-description: "Every failure is leading towards success."
-keyword: "BY, BY Blog, Mushuzi的博客, qiubaiying, Mushuzi, iOS, Apple, iPhone"
+email: lizishu0321@sina.com
+description: "Record brings improvement"
+keyword: "BY, BY Blog, mushuzi的博客, qiubaiying, Mushuzi, iOS, Apple, iPhone"
 url: "http://mushuzi.github.io"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
 github_repo: "https://github.com/mushuzi/mushuzi.github.io.git" # you code repository
