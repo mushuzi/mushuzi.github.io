@@ -8,8 +8,7 @@ author:     mushuzi
 header-img: img/post-bg-swift.jpg
 catalog: true
 tags:
-    -  
-    -  
+    -  ios 
 ---
 # Hello, beautiful 
 hello world
