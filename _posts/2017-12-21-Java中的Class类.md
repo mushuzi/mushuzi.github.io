@@ -16,3 +16,30 @@ tags:
 
 在Java编程中，我们时常需要写一个类，从而实例化一个该类的对象来进行一系列操作。我们说实例化出来的对象是类的对象，那么，类是对象吗？如果是的话，类是谁的对象呢？
 
+#正文
+针对前言中给出的“类是否是对象？”的问题，这里给出肯定的回答：类是对象。类是java.lang.Class类的实例对象。
+
+值得注意的是：很多人可能会把Class类和class这个词混淆，对于Class的解释，有这样一句解释：There is a class named Class"，即有一个名称为Class的类。
+
+既然Class是一个类，那自然而然我们会关心如何才能得到一个Class的对象？对于普通的对象，为了方便下文叙述，我们自定义一个Student类，可以通过Student s1 = new Student()的方式来new一个Student类的对象。但是请注意：我们不能通过这种new的方式得到Class类的对象！！！这是因为在Java对Class类的定义中，Class类的构造方法使用private修饰的，因此只有Java虚拟机自己才可以闯将Class类的实例对象。而我们无法调用Class的构造方法，如果我们试图用Class c = new Class()的方式创建对象，则Java虚拟机会报错。
+
+那究竟如何才能创建Class类的实例对象呢？有以下三种方式：
+1.通过Class c1 = Student.class;的方式。我们前面解释过，类是Class类的实例对象，而这里隐含了一个知识点：任何类都有一个隐含的静态成员变量class. 因此我们通过类名.class就可以获得Class类的一个实例对象。
+
+2.已知一个类的实例对象，通过getClass()方法可以获取该类的实例对象，代码如下：
+Student s1 = new Student();
+Class c2 = s1.getClass();
+官方文档在这里对c1,c2有这样的表述：c1和c2表示了Student类的类类型（class type）。
+
+3.通过Class类的forName()方法来获取Class类的实例对象，代码如下：
+Class c3 = Class.forName("Student类的全类名");
+当然上述代码在实际编程中需要补货异常，因为可能找不到Student这个类。
+
+通过上述三种方式获取到的Class的实例对象c1,c2,c3，如果我们用"=="来判断这三个量是否相等，你猜结果会是什么？没错，结果会返回true，即c1==c2==c3，因为c1,c2,c3都代表了Student类的类类型，而一个类只可能有一个类类型！
+
+得到了Student类的类类型，我们就有另一种创建Student类的实例对象的方式了，即使用Class类的newInstance()方法，代码如下：
+Student s = (Student) c1.newInstance();
+当然，通过c1.newInstance()创建出来的对象还需要进行强制转化成Student类型。
+
+#总结
+正文中对Class类的介绍，以及获取类的类类型的方式，是Java反射机制的绝对基础，必须牢固掌握。后面也将会进一步对Java反射机制加以介绍，希望能在总结和记录中与读者朋友们共同进步~
