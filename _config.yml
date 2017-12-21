@@ -1,13 +1,13 @@
 # Site settings
-title: mushuzi Blog
-SEOTitle: mushuzi的博客 | mushuzi Blog
-header-img: img/post-bg-swift.jpg
-email: lizishu0321@sina.com
-description: "Record brings improvement"
-keyword: "BY, BY Blog, mushuzi的博客, qiubaiying, Mushuzi, iOS, Apple, iPhone"
-url: "http://mushuzi.github.io"          # your host, for absolute URL
+title: BY Blog
+SEOTitle: 柏荧的博客 | BY Blog
+header-img: img/post-bg-desk.jpg
+email: qiubaiying@gmail.com
+description: "Every failure is leading towards success."
+keyword: "BY, BY Blog, 柏荧的博客, qiubaiying, 邱柏荧, iOS, Apple, iPhone"
+url: "http://qiubaiying.github.io"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
-github_repo: "https://github.com/mushuzi/mushuzi.github.io.git" # you code repository
+github_repo: "https://github.com/qiubaiying/qiubaiying.github.io.git" # you code repository
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
@@ -18,12 +18,12 @@ sidebar-avatar: /img/about-BY-gentle.jpg      # use absolute URL, seeing it's us
 
 # SNS settings
 RSS: false
-weibo_username:     qiubaiying
+# weibo_username:     qiubaiying
 zhihu_username:     qiubaiying
 github_username:    qiubaiying
 facebook_username:  baiying.qiu.7
 jianshu_username:   e71990ada2fd
-twitter_username:   qiubaiying
+#twitter_username:   qiubaiying
 
 
 
@@ -43,17 +43,19 @@ gems: [jekyll-paginate]
 
 
 
+
 # Markdown settings
 # replace redcarpet to kramdown,
 # although redcarpet can auto highlight code, the lack of header-id make the catalog impossible, so I switch to kramdown
 # document: http://jekyllrb.com/docs/configuration/#kramdown
 markdown: kramdown
 highlighter: rouge
-#kramdown:
+kramdown:
   input: GFM                            # use Github Flavored Markdown !important
 
 
-## 评论系统
+
+# 评论系统
 # Disqus（https://disqus.com/）
 # disqus_username: qiubaiying
 
