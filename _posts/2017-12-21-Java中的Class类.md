@@ -30,13 +30,12 @@ tags:
 
 2.已知一个类的实例对象，通过getClass()方法可以获取该类的实例对象，代码如下：  
 
-Student s1 = new Student();  
-
-Class c2 = s1.getClass();
+    Student s1 = new Student();
+    Class c2 = s1.getClass();
 
 3.通过Class类的forName()方法来获取Class类的实例对象，代码如下:  
 
-Class c3 = Class.forName("Student类的全类名");  
+    Class c3 = Class.forName("Student类的全类名");  
 
 当然上述代码在实际编程中需要捕获异常，因为可能找不到Student这个类。
 
@@ -44,7 +43,7 @@ Class c3 = Class.forName("Student类的全类名");
 
 得到了Student类的类类型，我们就有另一种创建Student类的实例对象的方式了，即使用Class类的newInstance()方法，代码如下：  
 
-Student s = (Student) c1.newInstance();  
+    Student s = (Student) c1.newInstance();  
 
 当然，通过c1.newInstance()创建出来的对象还需要进行强制转化，使其成为Student类型。
 
