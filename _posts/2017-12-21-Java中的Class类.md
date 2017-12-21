@@ -30,7 +30,7 @@ tags:
 这里我们对class关键字进行一些扩展叙述。在Java中，基本数据类型（例如int），关键字（例如void），已存类（例如Integer）和自定义类（例如Student），都有一个静态成员变量class。例如Class cc = int.class; 打印cc结果为int； Class cc2 = Integer.class; 打印cc2的结果为java.lang.Integer。
 
 2.已知一个类的实例对象，通过getClass()方法可以获取该类的实例对象，代码如下：
-
+</br>
 Student s1 = new Student();
 
 Class c2 = s1.getClass();
