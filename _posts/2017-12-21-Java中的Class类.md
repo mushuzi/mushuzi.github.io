@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      Java中的Class类
-subtitle:   函数式编程框架 ReactiveCocoa 进阶
+title:      Java反射机制基础之Class类
+subtitle:   Java中的Class类
 date:       2017-12-21
 author:     mushuzi
 catalog: true
