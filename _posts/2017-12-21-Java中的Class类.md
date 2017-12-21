@@ -1,4 +1,3 @@
-
 ---
 layout:     post
 title:      Java反射机制基础之Class类
@@ -29,22 +28,17 @@ tags:
 
 这里我们对class关键字进行一些扩展叙述。在Java中，基本数据类型（例如int），关键字（例如void），已存类（例如Integer）和自定义类（例如Student），都有一个静态成员变量class。例如Class cc = int.class; 打印cc结果为int； Class cc2 = Integer.class; 打印cc2的结果为java.lang.Integer。
 
-2.已知一个类的实例对象，通过getClass()方法可以获取该类的实例对象，代码如下：
-</br>
+2.已知一个类的实例对象，通过getClass()方法可以获取该类的实例对象，代码如下：</br>
 Student s1 = new Student();
-
 Class c2 = s1.getClass();
 
-3.通过Class类的forName()方法来获取Class类的实例对象，代码如下：
-
+3.通过Class类的forName()方法来获取Class类的实例对象，代码如下：</br>
 Class c3 = Class.forName("Student类的全类名");
-
 当然上述代码在实际编程中需要捕获异常，因为可能找不到Student这个类。
 
 官方文档在这里对c1,c2,c3有这样的表述：c1,c2,c3都表示了Student类的类类型（class type）。通过上述三种方式获取到的Class的实例对象c1,c2,c3，如果我们用"=="来判断这三个量是否相等，你猜结果会是什么？没错，结果会返回true，即c1==c2==c3，因为c1,c2,c3都代表了Student类的类类型，而一个类只可能有一个类类型！
 
-得到了Student类的类类型，我们就有另一种创建Student类的实例对象的方式了，即使用Class类的newInstance()方法，代码如下：
-
+得到了Student类的类类型，我们就有另一种创建Student类的实例对象的方式了，即使用Class类的newInstance()方法，代码如下：<\br>
 Student s = (Student) c1.newInstance();
 
 当然，通过c1.newInstance()创建出来的对象还需要进行强制转化，使其成为Student类型。
