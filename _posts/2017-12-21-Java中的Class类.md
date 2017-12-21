@@ -42,5 +42,7 @@ Class c3 = Class.forName("Student类的全类名");
 Student s = (Student) c1.newInstance();
 当然，通过c1.newInstance()创建出来的对象还需要进行强制转化，使其成为Student类型。
 
+最后，在实际编程中，我们经常会遇到类的对象作为方法输入参数的情况。例如方法：public static void printClassMeaasge(Object obj),完成功能：输入一个Object类或者其子类类型的对象obj，然后打印该类的类名和成员方法等信息。我们可以通过Class c = obj.getClass()获取该类的类类型，然后c.getName()获取类名，然后利用getMethods()方法获取到该类的成员方法集合。当然这将涉及到另一个类Method，因为方法也是对象，一个成员方法就是一个Method对象，Method类中封装了对成员方法的操作。
+
 # 总结
 正文中对Class类的介绍，以及获取类的类类型的方式，是Java反射机制的绝对基础，必须牢固掌握。后面也将会进一步对Java反射机制加以介绍，希望能在总结和记录中与读者朋友们共同进步~
