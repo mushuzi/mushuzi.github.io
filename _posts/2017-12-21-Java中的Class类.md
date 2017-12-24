@@ -4,6 +4,7 @@ title:      Java反射机制基础之Class类
 subtitle:   Java中的Class类
 date:       2017-12-21
 author:     mushuzi
+header-img: img/post-bg-ios9-web.jpg
 catalog: true
 tags:
     - Java
