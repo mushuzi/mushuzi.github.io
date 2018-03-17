@@ -2,13 +2,13 @@
 layout:     post
 title:      git常用命令总结
 subtitle:   git常用命令总结
-date:       2018-03-15
+date:       2018-03-12
 author:     mushuzi
 header-img: img/post-bg-ios9-web.jpg
 catalog: true
 tags:
-   - git
----
+    - git
+--- 
 
 # 文件的提交
 在日常使用git的时候都不可避免的需要使用到git commit命令，git commit实际上是用来新建一个提交对象，新建的提交对象对包含一个指向上次提交对象的指针。Git中的分支，实际上就是指向commit对象的指针，Git会使用master作为分支的默认名字。在若干次提交之后，其实就已经有了一个指向最后一次提交对象的master分支，它在每次commit的时候都会自动向前移动。其实，分支就是从某个提交对象往回看的历史
