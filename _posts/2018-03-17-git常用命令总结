@@ -10,68 +10,63 @@ tags:
     - git
 --- 
 
-# 前言
-剑指offer中的面试题6：从尾到头打印一个单链表。
+## 文件的提交
+在日常使用git的时候都不可避免的需要使用到git commit命令，git commit实际上是用来新建一个提交对象，新建的提交对象对包含一个指向上次提交对象的指针。Git中的分支，实际上就是指向commit对象的指针，Git会使用master作为分支的默认名字。在若干次提交之后，其实就已经有了一个指向最后一次提交对象的master分支，它在每次commit的时候都会自动向前移动。其实，分支就是从某个提交对象往回看的历史
 
-# 正文
-分析：单链表是单向的，只有一个从前向后的next指针，要想获取下一个节点，必须先访问到其之前的节点。那么如何才能从尾到头访问节点的值呢？本文结合《剑指offer》中的分析，给出三种解法。
- 
-## 解法一
-访问链表只能按照从前到后的顺序（可以理解为读入），而题目要求从后向前打印（可以理解为输出），从读入到输出，实际上是一个后进先出的过程，自然而然想到用栈来实现。声明一个栈，首先将链表节点存入栈中，然后再依次出栈，就可以完成从尾到头打印链表节点了。代码如下：
+## 分支的切换
+那么git是如何知道你当前在哪个分支工作的呢？git保存着一个名为HEAD的特别指针，它指向你正在工作的本地分支，可以理解为是你当工作分支的别名。
+运行：
 
-    public ArrayList<Integer> printListFromTailToHead1(ListNode listNode) {
-        ArrayList<Integer> list = new ArrayList<>();
-        if(listNode == null)
-        return list;        
-        Stack<ListNode> stack = new Stack<>();
-        while(listNode != null){            
-            stack.push(listNode);
-            listNode = listNode.next;
-        }        
-        while(!stack.isEmpty()){            
-            ListNode cur = stack.pop();
-            list.add(cur.val);
-        }
-        return list;
-    }
+    git branch 待创建的分支名
     
-## 解法二 
-既然想到了用栈来实现上述功能，而递归本质上就是一个栈结构，因此也可以用递归来实现。每次访问到一个节点的时候，先递归输出它后面的节点，再输出该节点本身，这样就可以从尾到头打印链表了。
+命令可以创建一个新的分支，这个新的分支指向当前的commit对象。但是该命令仅仅是建立一个新的分支，并不会自动切换到这个新的分支上去，即通过git branch创建分支后，我们仍然在创建前的分支下工作。
 
-    public ArrayList<Integer> printListFromTailToHead2(ListNode listNode) {
-        ArrayList<Integer> list = new ArrayList<>();
-        if(listNode == null)
-            return list;
-        addNodeVal(listNode, list);
-        return list;
-    }
-    
-    public void addNodeVal(ListNode listNode, ArrayList<Integer> list){
-        if(listNode == null)
-            return;
+可以执行以下命令：
 
-        if(listNode != null){
-        	if(listNode.next != null)
-        		addNodeVal(listNode.next, list);
-        	list.add(listNode.val);
-        }
-    }
+    git checkout 新创建的分支名
     
-上述代码的递归逻辑集中在addNodeVal方法中，将每次访问到的节点值添加进list当中，最后调用该addNodeVal方法即可。同时还要注意一点，不论是递归代码的书写，还是循环代码的书写，都要注意正确书写递归终止条件和循环终止条件。
- 
-最后针对递归本身，虽然递归的代码很简洁，但是其鲁棒性不高。因为当链表非常长的时候，可能会导致函数调用的层级很深，从而导致函数调用栈的溢出。
- 
-## 解法三 
-上述两种解法从算法的角度上对问题进行了分析，但还有一种更简单更易理解的方法，即使用Java自带的ArrayList类。该类具有的add()方法支持在Arraylist的指定索引上添加元素。因此我们依旧可以“一如既往”从前向后访问链表，只不过把后访问到的链表值插入到list的最前面即可。这个方法从理解到实现都是相当容易的。代码如下：
- 
-    public ArrayList<Integer> printListFromTailToHead3(ListNode listNode) {
-        ArrayList<Integer> list = new ArrayList<>();
-        if(listNode == null)
-            return list;
-        while(listNode != null){
-            list.add(0, listNode.val);
-            listNode = listNode.next;
-        }
-        return list;
-    }
- 
+来切换到通过git branch命令新建好的分支下，这样HEAD指针就指向了新创建的这个分支。
+
+合并以上两个步骤，以下命令可以实现新建并切换到一个分支的功能：
+
+    git checkout -b 待新建并切换的分支名
+    
+来看一个很有意思的事情，假设我们在master分支下新建并切换到一个新的分支testing，此时master和testing都指向当前的commit对象c,而HEAD指针指向testing分支。在当前分支testing下，我们再进行一次commit，产生一个新的commit对象c2，则此时testing分支指向新的commit对象c2，HEAD指针仍然指向testing分支，而master分支还指向原来的commit对象c。如果我们需要回到master分支下进行提交代码，应该怎么做呢？这就需要使用下面的命令切换回master分支：
+
+    git checkout master
+    
+以上命令完成了两件事：第一件事是将HEAD指针重新指向master分支；第二件事是将工作目录中的文件换成了master分支所指向的快照内容。总的来看，上述操作是将testing分支里做出的修改暂时取消，向另一个方向进行开发。
+
+在进行分支切换时，如果当前分支有尚未commit的文件，则会切换失败，即必须保证当前分支下所有文件的修改都已经commit完成以后才能进行分支切换。假设在testing分支下我进行了代码的改动，而我又需要切换到master分支下提交这些改动。此时可以先将当前进行的工作使用下列命令暂存在git栈中：
+
+    git stash
+
+然后再通过下列命令将最新版的代码pull下来，与本地同步：
+
+    git pull
+    
+最后再通过下列命令将暂存在git栈中的工作取出来：
+
+    git stash pop
+
+这样就可以成功切换到master分支下了。
+
+## 实际应用
+接下来对我在项目中经常使用的一些git命令加以总结，并按照先后顺序进行排列：
+
+    1.git stash //暂存当前工作到git栈中
+    2.git pull  //本地代码与git端代码同步
+    3.git stash pop //从git栈中取出暂存的工作
+    4.git checkout master //切换到master分支
+    5.git pull  
+    6.git checkout -b 待创建和切换的分支名  //创建并切换到一个新的分支上
+    7.git status //查看当前分支状态
+    8.git add 文件名    //将待提交的文件add到git,开始跟踪当前目录下的这些文件
+    9.git commit -m "提交信息"  //提交待提交文件
+    10.git push origin 分支名   //将本地分支的更新推送到远程主机
+
+另外如果发现提交有问题，可以使用下列命令撤回：
+
+    git reset head~1
+
+参考网址：https://git-scm.com/book/zh/v1/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%9A%84%E6%96%B0%E5%BB%BA%E4%B8%8E%E5%90%88%E5%B9%B6
