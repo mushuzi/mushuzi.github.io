@@ -40,7 +40,7 @@ ElasticSearch支持索引、查询、排序、聚合等一系列操作。下来�
 
 我们在MySQL数据中，经常会使用以下查询语句：
 
-    String query = "select website, docId, name, sum(clickCount) as clickCount, dt from TableName where website = "baidu" and dt = "2017-01-09" group by docId order by clickCount"
+    String query = "select website, docId, name, sum(clickCount) as clickCount, dt from TableName where website = "baidu" and dt = "2017-01-09" group by docId order by clickCount desc"
 
 我们来看在ElasticSearch中怎么构建上述查询语句(我们采用闭包的方式来表示）：
 
