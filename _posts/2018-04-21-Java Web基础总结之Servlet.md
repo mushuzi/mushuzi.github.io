@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      Java Web基础总结
-subtitle:   Java Web基础总结
+title:      Java Web基础总结之Servlet
+subtitle:   Java Web基础总结之Servlet
 date:       2018-04-21
 author:     mushuzi
 header-img: img/post-bg-ios9-web.jpg
