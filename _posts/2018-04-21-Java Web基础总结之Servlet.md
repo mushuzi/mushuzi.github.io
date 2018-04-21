@@ -9,6 +9,7 @@ catalog: true
 tags:
    - Java
    - web
+   - Servlet
 ---
 
 Servlet在MVC思想中承担着Controller这一重要角色，虽然项目中常有用到，但对其很多基本概念掌握得还是很模糊，这里做一个简单的总结。
